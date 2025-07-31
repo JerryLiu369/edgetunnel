@@ -1,4 +1,4 @@
-name: Upstream Sync
+name: UpstreamSync
 
 permissions:
   contents: write
@@ -12,12 +12,13 @@ jobs:
   sync_latest_from_upstream:
     name: Sync latest commits from upstream repo
     runs-on: ubuntu-latest
-    if: ${{ github.event.repository.fork }}
 
     steps:
       # Step 1: run a standard checkout action
       - name: Checkout target repo
         uses: actions/checkout@v3
+        with:
+          ref: main
 
       # Step 2: run the sync action
       - name: Sync upstream changes
